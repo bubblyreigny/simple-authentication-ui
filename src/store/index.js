@@ -8,13 +8,5 @@ const modules = {
 	user
 }
 export default createStore({
-	state: {
-	},
-	getters: {
-	},
-	mutations: {
-	},
-	actions: {
-	},
 	modules: modules
 })

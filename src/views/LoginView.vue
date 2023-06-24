@@ -29,7 +29,9 @@ export default {
     },
     computed: {
         ...mapState([
-
+            "auth",[
+                "authenticated_user"
+            ]
         ])
     },
     methods: {
@@ -40,6 +42,7 @@ export default {
             ]
         ),
         loginUserButton(event){
+            console.log(this.auth.authenticated_user)
             event.preventDefault();
             this.loginUser({ ...this.credentials }).then((res) => {
                 this.$router.push(`/users`)

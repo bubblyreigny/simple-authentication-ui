@@ -34,4 +34,63 @@ input[type=submit]:hover {
     cursor: pointer;
 }
 
+.button-info {
+    width: 100%;
+    background-color: #17a2b8;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.button-sm {
+    padding: 5px 10px !important;
+    margin: 4px 0 !important;
+    width: 50% !important;
+}
 
+.button-success {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.button-danger {
+    width: 100%;
+    background-color: #dc3545;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+table {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+  
+table td, table th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+  
+table tr:nth-child(even){background-color: #f2f2f2;}
+  
+table tr:hover {background-color: #ddd;}
+  
+table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #04AA6D;
+    color: white;
+}
