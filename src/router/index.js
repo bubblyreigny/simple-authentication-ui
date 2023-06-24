@@ -24,6 +24,16 @@ const routes = [
 		path: '/users',
 		name: 'users',
 		component: () => import('../views/UsersTable.vue')	
+	},
+	{
+		path: '/user/:id',
+		name: 'UserEdit',
+		component: () => import('../views/UserForm.vue')	
+	},
+	{
+		path: '/user/create',
+		name: 'UserCreate',
+		component: () => import('../views/UserForm.vue')	
 	}
 ]
 

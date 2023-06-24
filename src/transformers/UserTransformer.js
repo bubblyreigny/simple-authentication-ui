@@ -10,6 +10,8 @@ export class UserTransformer {
         data.username = payload.attributes.username
         data.address = payload.attributes.address
         data.postcode = payload.attributes.postcode
+        data.user_type = payload.attributes.user_type
+        data.password = payload.attributes.password
 
         return data;
     }
@@ -24,6 +26,8 @@ export class UserTransformer {
         data.username = payload.attributes.username
         data.address = payload.attributes.address
         data.postcode = payload.attributes.postcode
+        data.user_type = payload.attributes.user_type
+        data.password = payload.attributes.password
         
         return data
     }
@@ -41,6 +45,8 @@ export class UserTransformer {
         data.username = payload.attributes.username
         data.address = payload.attributes.address
         data.postcode = payload.attributes.postcode
+        data.user_type = payload.attributes.user_type
+        data.password = payload.attributes.password
         
         return data;
     }   

@@ -1,7 +1,12 @@
 <template>
     <div>
-        {{ user.usersList }}
         <table>
+            <tr>
+                <td colspan="7">
+                    <span class="float-left table-title">Users table</span>
+                    <button class="button-success float-right" @click="createUserButton()">Create</button>
+                </td>
+            </tr>
             <tr>
                 <th>First name</th>
                 <th>Last name</th>
@@ -11,7 +16,6 @@
                 <th>Postcode</th>
                 <th>Actions</th>
             </tr>
-
 
             <template v-if="user.usersList.length == 0">
                 <tr>
@@ -28,8 +32,9 @@
                         <td>{{ item.email }}</td>
                         <td>{{ item.address }}</td>
                         <td>{{ item.postcode }}</td>
-                        <td>
-                            <button class="button-info button-sm">Edit</button>
+
+                        <td v-if="item.user_type != 'admin'">
+                            <button class="button-info button-sm" @click="editUserButton(item.id)">Edit</button>
                             <button class="button-danger button-sm" @click="deleteUserButton(item.id)">Delete</button>
                         </td>
                     </tr>
@@ -69,10 +74,16 @@ export default {
                 'deleteUser'
             ]
         ),
+        editUserButton(user_id) {
+            this.$router.push(`/user/${user_id}`)
+        },
         deleteUserButton(user_id) {
             this.deleteUser({ id: user_id }).then((res) => {
                 this.fetchUsers()
             });
+        },
+        createUserButton() {
+            this.$router.push('/user/create')
         }
     },
     created() {
