@@ -75,7 +75,7 @@ export default {
             ]
         ),
         editUserButton(user_id) {
-            this.$router.push(`/user/${user_id}`)
+            this.$router.push(`/users/${user_id}`)
         },
         deleteUserButton(user_id) {
             this.deleteUser({ id: user_id }).then((res) => {
@@ -83,7 +83,7 @@ export default {
             });
         },
         createUserButton() {
-            this.$router.push('/user/create')
+            this.$router.push('/users/create')
         }
     },
     created() {

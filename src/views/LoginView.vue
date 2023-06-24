@@ -1,23 +1,37 @@
 <template>
-    <div>
-        <form ref="loginForm">
-            <label for="email">Email</label>
-            <input type="text" id="email" name="email" placeholder="Input email" v-model="credentials.email" required>
-    
-            <label for="password">Last Name</label>
-            <input type="password" id="password" name="password" placeholder="Input password" v-model="credentials.password" required>
+    <div class="login-form-container">
+        <div class="login-form-outline">
+            <form ref="loginForm" class="login-form" @submit="loginUserButton">
+                <h2>Login</h2>
+                <label for="email">Email</label>
+                <input type="text" id="email" name="email" placeholder="Input email" v-model="credentials.email" required>
+                <ErrorMessage name="email"></ErrorMessage>
+
+                <label for="password">Last Name</label>
+                <input type="password" id="password" name="password" placeholder="Input password" v-model="credentials.password" required>
+
+                <button class="float-left button-success" type="submit">Submit</button>
+            </form> 
+            <!-- <form ref="loginForm" class="login-form">
+                <h2>Login</h2>
+                <label for="email">Email</label>
+                <input type="text" id="email" name="email" placeholder="Input email" v-model="credentials.email" required>
         
-            <button class="button-success" @click="loginUserButton($event)">Submit</button>
-        </form> 
+                <label for="password">Last Name</label>
+                <input type="password" id="password" name="password" placeholder="Input password" v-model="credentials.password" required>
+            
+                <button class="float-left button-success" @click="loginUserButton($event)">Submit</button>
+            </form>  -->
+        </div>
     </div>
 </template>
 
 <script>
+// import { Form, Field, ErrorMessage } from 'vee-validate';
 import { mapState, mapActions } from 'vuex';
 export default {
     name: 'LoginView',
     components: {
-
     },
     data() {
         return {
@@ -42,12 +56,11 @@ export default {
             ]
         ),
         loginUserButton(event){
-            console.log(this.auth.authenticated_user)
             event.preventDefault();
             this.loginUser({ ...this.credentials }).then((res) => {
-                this.$router.push(`/users`)
+                this.$router.push(`/`)
             })
-        }
+        },
     },
     created() {
         

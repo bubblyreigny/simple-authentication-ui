@@ -34,7 +34,6 @@ input[type=submit]:hover {
 }
 
 .button-info {
-    width: 100%;
     background-color: #17a2b8;
     color: white;
     padding: 14px 20px;
@@ -88,6 +87,11 @@ input[type=submit]:hover {
     cursor: pointer;
 }
 
+label {
+    float: left;
+    margin-top: 10px;
+}
+
 .float-left {
     float: left;
 }
@@ -122,4 +126,25 @@ table th {
     text-align: left;
     background-color: #04AA6D;
     color: white;
+}
+
+.login-form-container {
+    margin: 0px auto;
+    width: 100%;
+}
+
+.login-form-outline {
+    margin-top: 10px;
+    padding: 10px;
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+}
+
+.login-form {
+    border: 1px solid gray;
+    padding: 20px;
+}
+.flex {
+    display: flex;
 }
