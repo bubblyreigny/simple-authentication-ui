@@ -35,14 +35,14 @@ export default {
     methods: {
         ...mapActions(
             'auth',[
-                'loginUser'
+                'loginUser',
+                'fetchUsers'
             ]
         ),
         loginUserButton(event){
             event.preventDefault();
-            console.log(this.$store)
             this.loginUser({ ...this.credentials }).then((res) => {
-                // this.$store
+                this.$router.push(`/users`)
             })
         }
     },
