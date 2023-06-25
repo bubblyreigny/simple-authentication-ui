@@ -5,7 +5,6 @@
                 <h2>Login</h2>
                 <label for="email">Email</label>
                 <input type="text" id="email" name="email" placeholder="Input email" v-model="credentials.email" required>
-                <ErrorMessage name="email"></ErrorMessage>
 
                 <label for="password">Last Name</label>
                 <input type="password" id="password" name="password" placeholder="Input password" v-model="credentials.password" required>

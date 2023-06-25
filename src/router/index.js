@@ -10,17 +10,27 @@ const routes = [
 			{
 				path: '/users',
 				name: 'users',
-				component: () => import('../views/UsersTable.vue')	
+				component: () => import('../views/UsersTable.vue'),
+				meta: {
+					requiresAuth: true,
+				}	
 			},
 			{
 				path: '/users/:id',
 				name: 'UserEdit',
-				component: () => import('../views/UserForm.vue')	
+				component: () => import('../views/UserForm.vue'),
+				
+				meta: {
+					requiresAuth: true,
+				}	
 			},
 			{
 				path: '/users/create',
 				name: 'UserCreate',
-				component: () => import('../views/UserForm.vue')	
+				component: () => import('../views/UserForm.vue'),
+				meta: {
+					requiresAuth: true,
+				}	
 			}
 		]
 	},
