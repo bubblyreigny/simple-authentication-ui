@@ -25,7 +25,7 @@
 
         </form>
 
-        <button class="button-base button-secondary">
+        <button class="button-base button-secondary" @click="redirectToTable()">
             Cancel
         </button>
 
@@ -84,6 +84,9 @@ export default {
             return this.createUser({ ...payload }).then(res => {
                 this.$router.push('/users')
             })
+        },
+        redirectToTable() {
+            return this.$router.push(`/users`)
         }
     },
     mounted() {
