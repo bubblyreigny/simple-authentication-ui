@@ -40,12 +40,19 @@ export default {
                     'Authorization' : `Bearer ${localStorage.getItem('access_token')}` 
                 }
             })
-            let result = JsonApiDecoder.normalize(response);
-        } catch (err) {
-            throw err
-        }
 
-        console.log(result)
+            let result = JsonApiDecoder.normalize(response);
+            return response
+        } catch (err) {
+            commit('SET_FORM_ERRORS', err.response.data.errors)
+            return err.response.status
+        }
+        // .then((res)=> {
+        // }).catch(err => {
+        //     console.log(err.response.data.errors)
+        //     throw err
+        // });
+
     },
 
     async updateUser ({ state, commit }, payload) {
@@ -79,6 +86,7 @@ export default {
 
     resetCurrentUserState({ commit }, payload) {
         console.log('resseting current user')
-        commit('RESET_CURRENT_USER')   
+        commit('RESET_CURRENT_USER')
+        commit('RESET_FORM_ERRORS')   
     }
 }

@@ -9,4 +9,5 @@ export default {
         postcode: '',
     },
     isEditing: false,
+    errors: {}
 }

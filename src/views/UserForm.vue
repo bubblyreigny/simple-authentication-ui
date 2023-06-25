@@ -1,37 +1,50 @@
 <template>
     <div>
-        <span>{{ formName }} User</span>
-        <form ref="userForm">
-            <label for="first_name">First name</label>
-            <input type="text" id="first_name" name="first_name" placeholder="Input first name" v-model="user.currentUser.first_name">
+        <div>
+            <span>{{ formName }} User</span>
 
-            <label for="last_name">Last name</label>
-            <input type="text" id="last_name" name="last_name" placeholder="Input last name" v-model="user.currentUser.last_name">
-
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="Input email" v-model="user.currentUser.email">
-
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password" placeholder="Input password" v-model="user.currentUser.password">
-
-            <label for="username">Username</label>
-            <input type="text" id="username" name="username" placeholder="Input username" v-model="user.currentUser.username">
-
-            <label for="address">Address</label>
-            <input type="text" id="address" name="address" placeholder="Input address" v-model="user.currentUser.address">
-
-            <label for="postcode">Postcode</label>
-            <input type="text" id="postcode" name="postcode" placeholder="Input postcode" v-model="user.currentUser.postcode">
-
-        </form>
-
-        <button class="button-base button-secondary" @click="redirectToTable()">
-            Cancel
-        </button>
-
-        <button class="button-base button-success" @click="upsertUserButton()">
-            Save
-        </button>
+            <div class="alert-container">
+                <template v-if="Object.keys(user.errors).length > 0">
+                    <div class="alert" v-for="(item, idx) in user.errors" v-bind:key="idx" :id="`alert_${idx}`">
+                        <span class="closebtn" @click="removeAlert(idx)">&times;</span>
+                        <span>
+                            {{ item[0] }}
+                        </span>
+                    </div>
+                </template>
+            </div>
+            <form ref="userForm">
+                <label for="first_name">First name</label>
+                <input type="text" id="first_name" name="first_name" placeholder="Input first name" v-model="user.currentUser.first_name">
+                
+                <label for="last_name">Last name</label>
+                <input type="text" id="last_name" name="last_name" placeholder="Input last name" v-model="user.currentUser.last_name">
+    
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Input email" v-model="user.currentUser.email">
+    
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Input password" v-model="user.currentUser.password">
+    
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" placeholder="Input username" v-model="user.currentUser.username">
+    
+                <label for="address">Address</label>
+                <input type="text" id="address" name="address" placeholder="Input address" v-model="user.currentUser.address">
+    
+                <label for="postcode">Postcode</label>
+                <input type="text" id="postcode" name="postcode" placeholder="Input postcode" v-model="user.currentUser.postcode">
+    
+            </form>
+    
+            <button class="button-base button-secondary" @click="redirectToTable()">
+                Cancel
+            </button>
+    
+            <button class="button-base button-success" @click="upsertUserButton()">
+                Save
+            </button>
+        </div>
     </div>
 </template>
 
@@ -51,6 +64,7 @@ export default {
         ...mapState([
             "user", [
                 "currentUser",
+                "errors"
             ]
         ]),
         formName() {
@@ -85,14 +99,19 @@ export default {
             }
 
             return this.createUser({ ...payload }).then(res => {
-                this.$router.push('/users')
-                setTimeout(() => {
-                    alert('user created!')
-                }, 200);
+                if (res != 422) {
+                    this.$router.push('/users')
+                    setTimeout(() => {
+                        alert('user created!')
+                    }, 200);
+                }
             })
         },
         redirectToTable() {
             return this.$router.push(`/users`)
+        },
+        removeAlert(id) {
+            document.getElementById(`alert_${id}`).remove()
         }
     },
     mounted() {
