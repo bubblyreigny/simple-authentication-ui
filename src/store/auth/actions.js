@@ -9,12 +9,17 @@ export default {
             password: payload.password
         }
 
-        const response = await axios.post(`${process.env.VUE_APP_API_URL}/login`, data , {
-            headers: {
-                'Accept': 'application/json'
-            }
-        })
+        try {
+            const response = await axios.post(`${process.env.VUE_APP_API_URL}/login`, data , {
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
 
-        commit('SET_AUTHENTICATED_USER', response)
+            commit('SET_AUTHENTICATED_USER', response)
+        } catch (err) {
+            alert(err.response.data.message)
+            throw err
+        }
     }
 }
