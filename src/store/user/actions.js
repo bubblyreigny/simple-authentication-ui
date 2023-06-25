@@ -47,27 +47,23 @@ export default {
             commit('SET_FORM_ERRORS', err.response.data.errors)
             return err.response.status
         }
-        // .then((res)=> {
-        // }).catch(err => {
-        //     console.log(err.response.data.errors)
-        //     throw err
-        // });
 
     },
 
     async updateUser ({ state, commit }, payload) {
-        const response = await axios.post(`${process.env.VUE_APP_API_URL}/user/${payload.id}/update`, payload, {
-            headers: {
-                'Authorization' : `Bearer ${localStorage.getItem('access_token')}` 
-            }
-        }).catch(err => {
-            console.log(err.response)
-            throw err
-        });
+        try {
+            const response = await axios.patch(`${process.env.VUE_APP_API_URL}/user/${payload.id}/update`, payload, {
+                headers: {
+                    'Authorization' : `Bearer ${localStorage.getItem('access_token')}` 
+                }
+            })
 
-        let result = JsonApiDecoder.normalize(response);
+            let result = JsonApiDecoder.normalize(response);
 
-        console.log(result)
+        } catch (err) {
+            commit('SET_FORM_ERRORS', err.response.data.errors)
+            return err.response.status
+        }
     },
 
     async deleteUser({ commit }, payload) {
