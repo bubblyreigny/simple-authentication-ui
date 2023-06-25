@@ -78,11 +78,17 @@ export default {
                 return this.updateUser({ ...payload, id: this.$route.params.id })
                     .then(res => {
                         this.$router.push('/users')
+                        setTimeout(() => {
+                            alert('user updated!')
+                        }, 200);
                     })
             }
 
             return this.createUser({ ...payload }).then(res => {
                 this.$router.push('/users')
+                setTimeout(() => {
+                    alert('user created!')
+                }, 200);
             })
         },
         redirectToTable() {

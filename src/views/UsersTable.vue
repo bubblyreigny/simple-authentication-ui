@@ -80,6 +80,9 @@ export default {
         deleteUserButton(user_id) {
             this.deleteUser({ id: user_id }).then((res) => {
                 this.fetchUsers()
+                setTimeout(() => {
+                    alert('user deleted!')
+                }, 200);
             });
         },
         createUserButton() {
