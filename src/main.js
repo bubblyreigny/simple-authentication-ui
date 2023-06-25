@@ -15,20 +15,13 @@ router.beforeEach((to, from, next) => {
         next()
     }
 
-    // if (to.fullPath == '/' && localStorage.getItem('access_token') && from.fullPath == '/') {
-    //     console.log('updating')
-    //     store.commit('auth/UPDATE_AUTHENTICATED_USER', {
-    //         token: localStorage.getItem('access_token'),
-    //         user: JSON.parse(localStorage.getItem('authenticated_user'))
-    //     })
-    // }
-    
-    if (!localStorage.getItem('access_token') && !localStorage.getItem('authenticated_user') && (Object.keys(to.meta).length == 0 || to.meta.requiresAuth)) {
-        next({
-            path: '/login',
-            query: { redirect: to.fullPath }
+    if (to.fullPath == '/' && localStorage.getItem('access_token') && from.fullPath == '/') {
+        console.log('updating')
+        store.commit('auth/UPDATE_AUTHENTICATED_USER', {
+            token: localStorage.getItem('access_token'),
+            user: JSON.parse(localStorage.getItem('authenticated_user'))
         })
-    }    
+    }
 
     next()
 })
