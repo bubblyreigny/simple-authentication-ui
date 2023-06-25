@@ -11,7 +11,11 @@ export default {
         localStorage.setItem('authenticated_user', JSON.stringify(payload.data.user)) 
     },
     LOGOUT_USER: (state, payload) => {
+        state.access_token = ""
+        state.authenticated_user = Object.assign({}, {})
 
+        localStorage.removeItem("access_token");
+        localStorage.removeItem("authenticated_user");
     },
     UPDATE_AUTHENTICATED_USER: (state, payload) => {
         state.authenticated_user = 

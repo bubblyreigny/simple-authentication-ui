@@ -21,5 +21,23 @@ export default {
             alert(err.response.data.message)
             throw err
         }
+    },
+
+    async logoutUser({ commit }, payload) 
+    {
+        console.log(localStorage.getItem('access_token'));
+        try {
+            const response = await axios.post(`${process.env.VUE_APP_API_URL}/logout`, {}, {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('access_token')}`,
+                    'Accept': 'application/json'
+                }
+            })
+
+            commit('LOGOUT_USER')
+        } catch (err) {
+            console.log(err.response.data)
+            throw err
+        }
     }
 }

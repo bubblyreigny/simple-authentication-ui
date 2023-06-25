@@ -63,7 +63,6 @@ input[type=submit]:hover {
 }
 
 .button-secondary {
-    display: inline-block;
 	font-weight: 400;
 	color: #212529;
 	text-align: center;
