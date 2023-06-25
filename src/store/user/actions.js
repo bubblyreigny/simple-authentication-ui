@@ -34,16 +34,16 @@ export default {
     },
 
     async createUser ({ state, commit }, payload) {
-        const response = await axios.post(`${process.env.VUE_APP_API_URL}/user/store`, payload, {
-            headers: {
-                'Authorization' : `Bearer ${localStorage.getItem('access_token')}` 
-            }
-        }).catch(err => {
-            console.log(err.response)
+        try {
+            const response = await axios.post(`${process.env.VUE_APP_API_URL}/user/store`, payload, {
+                headers: {
+                    'Authorization' : `Bearer ${localStorage.getItem('access_token')}` 
+                }
+            })
+            let result = JsonApiDecoder.normalize(response);
+        } catch (err) {
             throw err
-        });
-
-        let result = JsonApiDecoder.normalize(response);
+        }
 
         console.log(result)
     },
